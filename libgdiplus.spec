@@ -6,7 +6,7 @@ Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 Source0:	http://www.go-mono.com/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	3a7f891d18af0151876b98bc05d3b373
+# Source0-md5:	ca540a3d211ed88e641c6c927b9525ce
 URL:		http://www.go-mono.com/
 BuildRequires:	cairo-devel >= 0.3.0
 BuildRequires:	libtiff-devel
