@@ -5,12 +5,25 @@ Version:	1.1.5
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
+#Source0Download: http://www.mono-project.com/Downloads
 Source0:	http://www.go-mono.com/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	369ba22e934364dc6f0052e4a3f662fe
+Patch0:		%{name}-cairo.patch
 URL:		http://www.go-mono.com/
-BuildRequires:	cairo-devel >= 0.3.0
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	cairo-devel >= 0.4.0
+BuildRequires:	freetype-devel >= 2.0
+BuildRequires:	glib2-devel >= 1:2.2.3
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
+BuildRequires:	libtool
 BuildRequires:	libungif-devel
+BuildRequires:	sed >= 4.0
+BuildRequires:	pkgconfig
+Requires:	glib2 >= 1:2.2.3
+Requires:	cairo >= 0.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,8 +62,14 @@ Statyczna biblioteka %{name}.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--with-cairo=installed
 
@@ -73,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog LICENSE NEWS README
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
