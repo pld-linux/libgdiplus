@@ -37,28 +37,28 @@ Otwarta implementacja API GDI+.
 Czê¶æ projektu Mono.
 
 %package devel
-Summary:	%{name} header files
-Summary(pl):	Pliki nag³ówkowe %{name}
+Summary:	Development files for libgdiplus
+Summary(pl):	Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-%{name} header files.
+Development files for libgdiplus.
 
 %description devel -l pl
-Pliki nag³ówkowe %{name}.
+Pliki programistyczne libgdiplus.
 
 %package static
-Summary:	Static %{name} library
-Summary(pl):	Statyczna biblioteka %{name}
+Summary:	Static libgdiplus library
+Summary(pl):	Statyczna biblioteka libgdiplus
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static %{name} library.
+Static libgdiplus library.
 
 %description static -l pl
-Statyczna biblioteka %{name}.
+Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
@@ -93,14 +93,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog LICENSE NEWS README
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
+# needed at runtime for mono to load it as gdiplus.dll
+%attr(755,root,root) %{_libdir}/libgdiplus.so
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_pkgconfigdir}/*
+%{_libdir}/libgdiplus.la
+%{_pkgconfigdir}/libgdiplus.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libgdiplus.a
