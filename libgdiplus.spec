@@ -6,7 +6,7 @@ Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 #Source0Download: http://www.mono-project.com/Downloads
-Source0:	http://www.go-mono.com/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:	http://www.go-mono.com/sources/%{name}-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	458c2c4aec84ac1cccb15b6c31fa8f7a
 Patch0:		%{name}-cairo.patch
 URL:		http://www.go-mono.com/
