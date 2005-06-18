@@ -8,7 +8,8 @@ Group:		Libraries
 #Source0Download: http://www.mono-project.com/Downloads
 Source0:	http://www.go-mono.com/sources/%{name}-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	8b43da0990e43f2e92b7a2bdeb86f725
-Patch0:		%{name}-cairo.patch
+#Patch0:		%{name}-cairo.patch
+Patch0:		%{name}-glitz.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -64,7 +65,7 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch0 -p0
 
 %build
 %{__libtoolize}
@@ -73,10 +74,10 @@ Statyczna biblioteka libgdiplus.
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-cairo=installed
+#	--with-cairo=installed
 
-echo "all:\n\ninstall:" > cairo/Makefile
-echo "all:\n\ninstall:" > libpixman/Makefile
+#echo "all:\n\ninstall:" > cairo/Makefile
+#echo "all:\n\ninstall:" > libpixman/Makefile
 
 %{__make}
 
