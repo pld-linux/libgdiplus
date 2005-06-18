@@ -13,6 +13,7 @@ URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cairo-devel >= 0.4.0
+BuildRequires:	cairo-devel < 0.5.0
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	libjpeg-devel
@@ -24,6 +25,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.2.3
 Requires:	cairo >= 0.4.0
+Requires:	cairo < 0.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
