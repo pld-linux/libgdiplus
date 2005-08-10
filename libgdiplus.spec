@@ -8,13 +8,10 @@ Group:		Libraries
 #Source0Download: http://www.mono-project.com/Downloads
 Source0:	http://www.go-mono.com/sources/%{name}-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	8b43da0990e43f2e92b7a2bdeb86f725
-#Patch0:		%{name}-cairo.patch
 Patch0:		%{name}-glitz.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel >= 0.4.0
-BuildRequires:	cairo-devel < 0.5.0
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	libjpeg-devel
@@ -25,8 +22,6 @@ BuildRequires:	libungif-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.2.3
-Requires:	cairo >= 0.4.0
-Requires:	cairo < 0.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,11 +68,7 @@ Statyczna biblioteka libgdiplus.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
-#	--with-cairo=installed
-
-#echo "all:\n\ninstall:" > cairo/Makefile
-#echo "all:\n\ninstall:" > libpixman/Makefile
+%configure
 
 %{__make}
 
