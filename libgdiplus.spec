@@ -1,14 +1,20 @@
+#
+# We still statically link in Cairo (and include the Cairo sources as part of
+# our libgdiplus tree). Two main reasons for that: First, it eases the
+# dependency hell a bit, there's not yet another lib you have to get and/or
+# build, second reason is that until we use Pango for text (see below), we can
+# do some private stuff to cairo to improve text-display related performance.
+#
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	1.1.8
+Version:	1.1.9
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 #Source0Download: http://www.mono-project.com/Downloads
 Source0:	http://www.go-mono.com/sources/%{name}-1.1/%{name}-%{version}.tar.gz
-# Source0-md5:	8b43da0990e43f2e92b7a2bdeb86f725
-Patch0:		%{name}-glitz.patch
+# Source0-md5:	a55ee56efdb41dc47069b7117a0b813b
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -60,7 +66,6 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 %{__libtoolize}
