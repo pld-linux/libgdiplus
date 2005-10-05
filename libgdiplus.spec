@@ -12,8 +12,8 @@ Version:	1.1.9.1
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
-#Source0Download: http://www.mono-project.com/Downloads
-Source0:	http://www.go-mono.com/sources/%{name}-1.1/%{name}-%{version}.tar.gz
+#Source0Download: http://www.go-mono.com/sources/
+Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	5de747f53afc96294e123ef1b4ddaf9b
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
