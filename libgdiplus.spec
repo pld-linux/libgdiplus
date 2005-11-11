@@ -5,6 +5,8 @@
 # build, second reason is that until we use Pango for text (see below), we can
 # do some private stuff to cairo to improve text-display related performance.
 #
+# WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
+#
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl):	Otwarta implementacja API GDI+
 Name:		libgdiplus
