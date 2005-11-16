@@ -4,6 +4,7 @@
 # dependency hell a bit, there's not yet another lib you have to get and/or
 # build, second reason is that until we use Pango for text (see below), we can
 # do some private stuff to cairo to improve text-display related performance.
+# --- but: the first reason is meaningless in PLD, the second seems only theoretical
 #
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
@@ -17,6 +18,7 @@ Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources/
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	79a85656ceab0dd9292050db977e3c3b
+Patch0:		cairo-gcc4.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -68,6 +70,8 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
+cd cairo
+%patch0 -p1
 
 %build
 %{__libtoolize}
