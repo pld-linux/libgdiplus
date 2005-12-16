@@ -11,13 +11,13 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	1.1.10
+Version:	1.1.11
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources/
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
-# Source0-md5:	79a85656ceab0dd9292050db977e3c3b
+# Source0-md5:	c0de8ffb854029431e0f60bda8f34032
 Patch0:		cairo-gcc4.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog LICENSE NEWS README
+%doc AUTHORS ChangeLog LICENSE NEWS README TODO
 %attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
 # needed at runtime for mono to load it as gdiplus.dll
 %attr(755,root,root) %{_libdir}/libgdiplus.so
