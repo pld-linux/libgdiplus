@@ -19,6 +19,7 @@ Group:		Libraries
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	97da26e08454a08e64c3936800efdfa5
 URL:		http://www.go-mono.com/
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0
@@ -71,6 +72,12 @@ Statyczna biblioteka libgdiplus.
 %setup -q
 
 %build
+# workaround for "C++ preprocessor "/lib/cpp" fails sanity check"
+cd cairo
+%{__aclocal}
+%{__autoconf}
+cd -
+
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
