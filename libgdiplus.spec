@@ -11,15 +11,14 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	1.1.13.2
+Version:	1.1.13.4
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources/
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
-# Source0-md5:	97da26e08454a08e64c3936800efdfa5
+# Source0-md5:	3ea5e3ee01f1f43459e2c2d0b52ece1a
 URL:		http://www.go-mono.com/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0
@@ -31,6 +30,8 @@ BuildRequires:	libtool
 BuildRequires:	libungif-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXrender-devel
 Requires:	glib2 >= 1:2.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
