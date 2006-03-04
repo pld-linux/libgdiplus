@@ -18,9 +18,10 @@ Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources/
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
 # Source0-md5:	3ea5e3ee01f1f43459e2c2d0b52ece1a
+Patch0:		%{name}-link.patch
 URL:		http://www.go-mono.com/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.54
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.2.3
@@ -81,12 +82,14 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-# workaround for "C++ preprocessor "/lib/cpp" fails sanity check"
 cd cairo
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 cd -
 
 %{__libtoolize}
