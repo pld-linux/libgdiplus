@@ -21,16 +21,17 @@ Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libungif-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
-BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXrender-devel
 Requires:	glib2 >= 1:2.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,6 +51,15 @@ Summary:	Development files for libgdiplus
 Summary(pl):	Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	fontconfig-devel
+Requires:	freetype-devel >= 2.0
+Requires:	glib2-devel >= 1:2.2.3
+Requires:	libjpeg-devel
+Requires:	libpng-devel >= 1.2
+Requires:	libtiff-devel
+Requires:	libungif-devel
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXrender-devel
 
 %description devel
 Development files for libgdiplus.
