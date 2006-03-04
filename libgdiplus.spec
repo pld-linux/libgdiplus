@@ -32,7 +32,6 @@ BuildRequires:	libtool
 BuildRequires:	libungif-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
-BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXrender-devel
 Requires:	glib2 >= 1:2.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,7 +58,6 @@ Requires:	libjpeg-devel
 Requires:	libpng-devel >= 1.2
 Requires:	libtiff-devel
 Requires:	libungif-devel
-Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXrender-devel
 
 %description devel
