@@ -30,7 +30,6 @@ BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libungif-devel
-BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXrender-devel
 Requires:	glib2 >= 1:2.2.3
