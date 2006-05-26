@@ -24,12 +24,12 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
+BuildRequires:	giflib-devel
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libungif-devel
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXrender-devel
 Requires:	glib2 >= 1:2.2.3
@@ -52,11 +52,11 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fontconfig-devel
 Requires:	freetype-devel >= 2.0
+Requires:	giflib-devel
 Requires:	glib2-devel >= 1:2.2.3
 Requires:	libjpeg-devel
 Requires:	libpng-devel >= 1.2
 Requires:	libtiff-devel
-Requires:	libungif-devel
 Requires:	xorg-lib-libXrender-devel
 
 %description devel
