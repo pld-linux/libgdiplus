@@ -1,11 +1,11 @@
---- libgdiplus-1.1.13.4/cairo/configure.in.orig	2005-09-08 20:17:04.000000000 +0200
-+++ libgdiplus-1.1.13.4/cairo/configure.in	2006-03-04 21:38:36.005546250 +0100
-@@ -96,7 +96,7 @@
-     use_xlib=yes], [
-       AC_CHECK_HEADER(X11/extensions/Xrender.h, [
-       AC_PATH_XTRA
--      XRENDER_LIBS="$X_LIBS -lXrender -lXext -lX11 $X_EXTRA_LIBS"
-+      XRENDER_LIBS="$X_LIBS -lXrender -lX11 $X_EXTRA_LIBS"
-       use_xlib=yes], [
- 		use_xlib="no (requires Xrender http://freedesktop.org/Software/xlibs)"])])
-   _CHECK_FUNCS_WITH_FLAGS(XrmFinalize, $XRENDER_CFLAGS, $XRENDER_LIBS)
+--- libgdiplus-1.1.17/cairo/configure.in.orig	2006-08-25 21:52:27.000000000 +0200
++++ libgdiplus-1.1.17/cairo/configure.in	2006-08-30 11:13:53.815971000 +0200
+@@ -197,7 +197,7 @@
+   if test "x$no_x" = xyes; then
+     use_xlib="no (requires Xlib)"
+   else
+-    xlib_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
++    xlib_LIBS="$X_LIBS -lX11 $X_EXTRA_LIBS"
+     xlib_CFLAGS=$X_CFLAGS
+   fi
+ ])
