@@ -1,11 +1,12 @@
---- libgdiplus-1.1.17/cairo/configure.in.orig	2006-08-25 21:52:27.000000000 +0200
-+++ libgdiplus-1.1.17/cairo/configure.in	2006-08-30 11:13:53.815971000 +0200
-@@ -197,7 +197,7 @@
-   if test "x$no_x" = xyes; then
-     use_xlib="no (requires Xlib)"
-   else
--    xlib_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
-+    xlib_LIBS="$X_LIBS -lX11 $X_EXTRA_LIBS"
-     xlib_CFLAGS=$X_CFLAGS
-   fi
+diff -ruN libgdiplus-1.1.18./cairo/configure.in libgdiplus-1.1.18/cairo/configure.in
+--- libgdiplus-1.1.18./cairo/configure.in	2006-10-16 20:09:54.000000000 +0200
++++ libgdiplus-1.1.18/cairo/configure.in	2006-10-16 20:10:56.746805587 +0200
+@@ -233,7 +233,7 @@
+ 		     if test "x$no_x" = xyes; then
+ 		       use_xlib="no (requires X development libraries)"
+ 		     else
+-		       xlib_NONPKGCONFIG_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
++		       xlib_NONPKGCONFIG_LIBS="$X_LIBS -lX11 $X_EXTRA_LIBS"
+ 		       xlib_NONPKGCONFIG_CFLAGS=$X_CFLAGS
+ 		     fi])
  ])
