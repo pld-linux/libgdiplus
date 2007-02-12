@@ -9,7 +9,7 @@
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
 Summary:	An Open Source implementation of the GDI+ API
-Summary(pl):	Otwarta implementacja API GDI+
+Summary(pl.UTF-8):   Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	1.2.3
 Release:	1
@@ -40,14 +40,14 @@ An Open Source implementation of the GDI+ API.
 
 This is part of the Mono project.
 
-%description -l pl
+%description -l pl.UTF-8
 Otwarta implementacja API GDI+.
 
-Czê¶æ projektu Mono.
+CzÄ™Å›Ä‡ projektu Mono.
 
 %package devel
 Summary:	Development files for libgdiplus
-Summary(pl):	Pliki programistyczne libgdiplus
+Summary(pl.UTF-8):   Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fontconfig-devel
@@ -62,19 +62,19 @@ Requires:	xorg-lib-libXrender-devel
 %description devel
 Development files for libgdiplus.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne libgdiplus.
 
 %package static
 Summary:	Static libgdiplus library
-Summary(pl):	Statyczna biblioteka libgdiplus
+Summary(pl.UTF-8):   Statyczna biblioteka libgdiplus
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libgdiplus library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libgdiplus.
 
 %prep
