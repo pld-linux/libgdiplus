@@ -4,29 +4,34 @@
 # dependency hell a bit, there's not yet another lib you have to get and/or
 # build, second reason is that until we use Pango for text (see below), we can
 # do some private stuff to cairo to improve text-display related performance.
+# --- but: the first reason is meaningless in PLD, the second seems only theoretical
+#
+# WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	1.1.13.6
+Version:	1.2.3
 Release:	1
 License:	LGPL/MPL/MIT X11
 Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources/
 Source0:	http://www.go-mono.com/sources/libgdiplus-1.1/%{name}-%{version}.tar.gz
-# Source0-md5:	9177164efa8dfe8f625c240945d6a379
+# Source0-md5:	a29d56304aca9236754e61bf8ee518ee
+Patch0:		%{name}-link.patch
 URL:		http://www.go-mono.com/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.54
+BuildRequires:	automake >= 1:1.7
+BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
+BuildRequires:	giflib-devel
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libungif-devel
-BuildRequires:	sed >= 4.0
 BuildRequires:	pkgconfig
+BuildRequires:	xrender-devel
 Requires:	glib2 >= 1:2.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,6 +50,14 @@ Summary:	Development files for libgdiplus
 Summary(pl):	Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	fontconfig-devel
+Requires:	freetype-devel >= 2.0
+Requires:	giflib-devel
+Requires:	glib2-devel >= 1:2.2.3
+Requires:	libjpeg-devel
+Requires:	libpng-devel >= 1.2
+Requires:	libtiff-devel
+Requires:	xrender-devel
 
 %description devel
 Development files for libgdiplus.
@@ -66,8 +79,16 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+cd cairo
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd -
+
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -91,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog LICENSE NEWS README
+%doc AUTHORS ChangeLog LICENSE NEWS README TODO
 %attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
 # needed at runtime for mono to load it as gdiplus.dll
 %attr(755,root,root) %{_libdir}/libgdiplus.so
