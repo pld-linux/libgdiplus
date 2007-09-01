@@ -19,7 +19,6 @@ Group:		Libraries
 Source0:	http://www.go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
 # Source0-md5:	82bbf6ca86b85e5148a15d8d88c6e548
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-include.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -81,7 +80,6 @@ Statyczna biblioteka libgdiplus.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 cd cairo
