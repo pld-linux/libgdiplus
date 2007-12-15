@@ -1,10 +1,7 @@
 #
-# We still statically link in Cairo (and include the Cairo sources as part of
-# our libgdiplus tree). Two main reasons for that: First, it eases the
-# dependency hell a bit, there's not yet another lib you have to get and/or
-# build, second reason is that until we use Pango for text (see below), we can
-# do some private stuff to cairo to improve text-display related performance.
-# --- but: the first reason is meaningless in PLD, the second seems only theoretical
+# Conditional build:
+%bcond_with	internal_cairo	# internal cairo 1.4.10 instead of system one
+%bcond_with	pango		# use pango for text rendering (experimental; system cairo only)
 #
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
@@ -12,8 +9,12 @@ Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	1.2.6
-Release:	1
-License:	LGPL v2.1/MPL 1.1/MIT X11
+Release:	2
+%if %{with internal_cairo}
+License:	LGPL v2.1 or MPL 1.1
+%else
+License:	MIT X11
+%endif
 Group:		Libraries
 #Source0Download: http://www.go-mono.com/sources-stable/
 Source0:	http://www.go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
@@ -22,6 +23,7 @@ Patch0:		%{name}-link.patch
 URL:		http://www.go-mono.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
+%{!?with_internal_cairo:BuildRequires:	cairo-devel >= 1.4.12}
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	giflib-devel
@@ -31,9 +33,12 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+%{?with_pango:BuildRequires:	pango-devel >= 1:1.10}
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXrender-devel
+%{!?with_internal_cairo:Requires:	cairo >= 1.4.12}
 Requires:	glib2 >= 1:2.2.3
+%{?with_pango:Requires:	pango >= 1:1.10}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,6 +56,7 @@ Summary:	Development files for libgdiplus
 Summary(pl.UTF-8):	Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%{!?with_internal_cairo:Requires:	cairo-devel >= 1.4.12}
 Requires:	fontconfig-devel
 Requires:	freetype-devel >= 2.0
 Requires:	giflib-devel
@@ -59,6 +65,7 @@ Requires:	libexif-devel
 Requires:	libjpeg-devel
 Requires:	libpng-devel >= 1.2
 Requires:	libtiff-devel
+%{?with_pango:Requires:	pango-devel >= 1:1.10}
 Requires:	xorg-lib-libXrender-devel
 
 %description devel
@@ -96,7 +103,9 @@ cd -
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	%{!?with_internal_cairo:--with-cairo=system} \
+	%{?with_pango:--with-pango}
 
 %{__make}
 
@@ -114,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog LICENSE NEWS README TODO
+%doc AUTHORS COPYING ChangeLog %{?with_internal_cairo:LICENSE} NEWS README TODO
 %attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
 # needed at runtime for mono to load it as gdiplus.dll
 %attr(755,root,root) %{_libdir}/libgdiplus.so
