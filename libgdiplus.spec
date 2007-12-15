@@ -16,11 +16,11 @@ License:	LGPL v2.1 or MPL 1.1
 License:	MIT X11
 %endif
 Group:		Libraries
-#Source0Download: http://www.go-mono.com/sources-stable/
-Source0:	http://www.go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
+#Source0Download: http://go-mono.com/sources-stable/
+Source0:	http://go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
 # Source0-md5:	dfe8e43a49b4aa40ab5b7cf53bf83675
 Patch0:		%{name}-link.patch
-URL:		http://www.go-mono.com/
+URL:		http://www.mono-project.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 %{!?with_internal_cairo:BuildRequires:	cairo-devel >= 1.4.12}
