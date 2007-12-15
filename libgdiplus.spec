@@ -13,9 +13,9 @@ Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	1.2.6
 Release:	1
-License:	LGPL/MPL/MIT X11
+License:	LGPL v2.1/MPL 1.1/MIT X11
 Group:		Libraries
-#Source0Download: http://www.go-mono.com/sources/
+#Source0Download: http://www.go-mono.com/sources-stable/
 Source0:	http://www.go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
 # Source0-md5:	dfe8e43a49b4aa40ab5b7cf53bf83675
 Patch0:		%{name}-link.patch
@@ -26,6 +26,7 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	giflib-devel
 BuildRequires:	glib2-devel >= 1:2.2.3
+BuildRequires:	libexif-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libtiff-devel
@@ -54,6 +55,7 @@ Requires:	fontconfig-devel
 Requires:	freetype-devel >= 2.0
 Requires:	giflib-devel
 Requires:	glib2-devel >= 1:2.2.3
+Requires:	libexif-devel
 Requires:	libjpeg-devel
 Requires:	libpng-devel >= 1.2
 Requires:	libtiff-devel
