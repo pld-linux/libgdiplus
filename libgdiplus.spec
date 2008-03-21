@@ -20,6 +20,7 @@ Group:		Libraries
 Source0:	http://go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
 # Source0-md5:	939f65903ea385ae1dc9bf0098669838
 Patch0:		%{name}-link.patch
+Patch1:		%{name}-lt.patch
 URL:		http://www.mono-project.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -89,6 +90,7 @@ Statyczna biblioteka libgdiplus.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd cairo
@@ -125,6 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog %{?with_internal_cairo:LICENSE} NEWS README TODO
 %attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgdiplus.so.0
 # needed at runtime for mono to load it as gdiplus.dll
 %attr(755,root,root) %{_libdir}/libgdiplus.so
 
