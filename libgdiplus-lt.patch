@@ -1,0 +1,31 @@
+--- libgdiplus-1.9/cairo/configure.in.orig	2008-03-21 20:24:11.115153000 +0100
++++ libgdiplus-1.9/cairo/configure.in	2008-03-21 20:50:21.340632725 +0100
+@@ -22,23 +22,23 @@
+ # libtool shared library version
+ 
+ # Increment if the interface has additions, changes, removals.
+-LT_CURRENT=13
++LTVER_CURRENT=13
+ 
+ # Increment any time the source changes; set to
+ # 0 if you increment CURRENT
+-LT_REVISION=5
++LTVER_REVISION=5
+ 
+ # Increment if any interfaces have been added; set to 0
+ # if any interfaces have been removed. removal has
+ # precedence over adding, so set to 0 if both happened.
+-LT_AGE=11
++LTVER_AGE=11
+ 
+ dnl ===========================================================================
+ 
+-VERSION_INFO="$LT_CURRENT:$LT_REVISION:$LT_AGE"
++VERSION_INFO="$LTVER_CURRENT:$LTVER_REVISION:$LTVER_AGE"
+ AC_SUBST(VERSION_INFO)
+ 
+-LT_CURRENT_MINUS_AGE=`expr $LT_CURRENT - $LT_AGE`
++LT_CURRENT_MINUS_AGE=`expr $LTVER_CURRENT - $LTVER_AGE`
+ AC_SUBST(LT_CURRENT_MINUS_AGE)
+ 
+ CAIRO_VERSION_MAJOR=cairo_version_major()
