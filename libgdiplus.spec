@@ -16,8 +16,8 @@ License:	LGPL v2.1 or MPL 1.1
 License:	MIT X11
 %endif
 Group:		Libraries
-#Source0Download: http://go-mono.com/sources-stable/
-Source0:	http://go-mono.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
+# latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
+Source0:	http://ftp.novell.com/pub/mono/sources/libgdiplus/%{name}-%{version}.tar.bz2
 # Source0-md5:	939f65903ea385ae1dc9bf0098669838
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-lt.patch
