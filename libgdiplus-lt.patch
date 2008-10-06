@@ -4,8 +4,8 @@
  # libtool shared library version
  
  # Increment if the interface has additions, changes, removals.
--LT_CURRENT=13
-+LTVER_CURRENT=13
+-LT_CURRENT=19
++LTVER_CURRENT=19
  
  # Increment any time the source changes; set to
  # 0 if you increment CURRENT
@@ -15,8 +15,8 @@
  # Increment if any interfaces have been added; set to 0
  # if any interfaces have been removed. removal has
  # precedence over adding, so set to 0 if both happened.
--LT_AGE=11
-+LTVER_AGE=11
+-LT_AGE=17
++LTVER_AGE=17
  
  dnl ===========================================================================
  

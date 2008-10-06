@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	internal_cairo	# internal cairo 1.4.10 instead of system one
+%bcond_with	internal_cairo	# internal cairo 1.6.4 instead of system one
 %bcond_with	pango		# use pango for text rendering (experimental; system cairo only)
 #
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
@@ -8,7 +8,7 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	1.9
+Version:	2.0
 Release:	1
 %if %{with internal_cairo}
 License:	LGPL v2.1 or MPL 1.1
@@ -18,14 +18,14 @@ License:	MIT X11
 Group:		Libraries
 # latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
 Source0:	http://ftp.novell.com/pub/mono/sources/libgdiplus/%{name}-%{version}.tar.bz2
-# Source0-md5:	939f65903ea385ae1dc9bf0098669838
+# Source0-md5:	dc732fb2d996b54405c27645cb8642d9
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-lt.patch
 Patch2:		%{name}-autoconf262.patch
 URL:		http://www.mono-project.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
-%{!?with_internal_cairo:BuildRequires:	cairo-devel >= 1.4.12}
+%{!?with_internal_cairo:BuildRequires:	cairo-devel >= 1.6.4}
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	giflib-devel
@@ -38,7 +38,7 @@ BuildRequires:	libtool
 %{?with_pango:BuildRequires:	pango-devel >= 1:1.10}
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXrender-devel
-%{!?with_internal_cairo:Requires:	cairo >= 1.4.12}
+%{!?with_internal_cairo:Requires:	cairo >= 1.6.4}
 Requires:	glib2 >= 1:2.2.3
 %{?with_pango:Requires:	pango >= 1:1.10}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
