@@ -8,8 +8,8 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	2.0
-Release:	2
+Version:	2.4
+Release:	1
 %if %{with internal_cairo}
 License:	LGPL v2.1 or MPL 1.1
 %else
@@ -18,10 +18,9 @@ License:	MIT X11
 Group:		Libraries
 # latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
 Source0:	http://ftp.novell.com/pub/mono/sources/libgdiplus/%{name}-%{version}.tar.bz2
-# Source0-md5:	dc732fb2d996b54405c27645cb8642d9
+# Source0-md5:	ddf40d6f21ab7e8942abd063d460e4fa
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-lt.patch
-Patch2:		%{name}-autoconf262.patch
 URL:		http://www.mono-project.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -92,7 +91,6 @@ Statyczna biblioteka libgdiplus.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cd cairo
