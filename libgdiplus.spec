@@ -9,7 +9,7 @@ Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	2.4
-Release:	1
+Release:	2
 %if %{with internal_cairo}
 License:	LGPL v2.1 or MPL 1.1
 %else
