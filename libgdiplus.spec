@@ -42,6 +42,8 @@ Requires:	glib2 >= 1:2.2.3
 %{?with_pango:Requires:	pango >= 1:1.10}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%undefine	__cxx
+
 %description
 An Open Source implementation of the GDI+ API.
 
