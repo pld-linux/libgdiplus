@@ -1,0 +1,60 @@
+--- src/pngcodec.c.orig	2010-01-16 23:47:17.000000000 +0100
++++ src/pngcodec.c	2010-01-16 23:49:49.000000000 +0100
+@@ -352,7 +352,7 @@
+ 						info_ptr->palette[i].blue,
+ 						info_ptr->palette[i].green,
+ 						info_ptr->palette[i].red,
+-						info_ptr->trans[i]); /* alpha */
++						info_ptr->trans_alpha[i]); /* alpha */
+ 			}
+ 		}
+ 
+@@ -418,7 +418,7 @@
+ 		}
+ 
+ 		if ((color_type == PNG_COLOR_TYPE_GRAY) && (bit_depth < 8)) {
+-			png_set_gray_1_2_4_to_8(png_ptr);
++			png_set_expand_gray_1_2_4_to_8(png_ptr);
+ 		}
+ 
+ 		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)) {
+--- configure.in~	2009-01-28 23:46:54.000000000 +0100
++++ configure.in	2010-01-28 19:52:59.844022017 +0100
+@@ -293,19 +293,19 @@
+ fi
+ 
+ dnl Test for libpng
+-    AC_MSG_CHECKING(for libpng12)
+-    if $PKG_CONFIG --exists libpng12 ; then
++    AC_MSG_CHECKING(for libpng)
++    if $PKG_CONFIG --exists libpng ; then
+         AC_MSG_RESULT(yes)
+         PNG='png'
+-	PNG_DEP_CFLAGS_PACKAGES=libpng12
+-	LIBPNG=`$PKG_CONFIG --libs libpng12`
++	PNG_DEP_CFLAGS_PACKAGES=libpng
++	LIBPNG=`$PKG_CONFIG --libs libpng`
+     else
+       AC_MSG_RESULT(no)
+       AC_CHECK_LIB(png, png_read_info,
+         [AC_CHECK_HEADER(png.h,
+           png_ok=yes,
+           png_ok=no)],
+-        AC_MSG_ERROR(*** libpng12 not found. See http://www.libpng.org/pub/png/libpng.html.), -lz -lm)
++        AC_MSG_ERROR(*** libpng not found. See http://www.libpng.org/pub/png/libpng.html.), -lz -lm)
+       if test "$png_ok" = yes; then
+         AC_MSG_CHECKING([for png_structp in png.h])
+         AC_TRY_COMPILE([#include <png.h>],
+@@ -316,10 +316,10 @@
+         if test "$png_ok" = yes; then
+           PNG='png'; LIBPNG='-lpng -lz'
+         else
+-          AC_MSG_ERROR(*** libpng12 found, but it is too old. See http://www.libpng.org/pub/png/libpng.html.)
++          AC_MSG_ERROR(*** libpng found, but it is too old. See http://www.libpng.org/pub/png/libpng.html.)
+         fi
+       else
+-          AC_MSG_ERROR(*** libpng12 not found. See http://www.libpng.org/pub/png/libpng.html.)
++          AC_MSG_ERROR(*** libpng not found. See http://www.libpng.org/pub/png/libpng.html.)
+       fi
+     fi
+ 
