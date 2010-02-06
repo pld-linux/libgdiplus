@@ -30,9 +30,10 @@ BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
 BuildRequires:	giflib-devel
 BuildRequires:	glib2-devel >= 1:2.2.3
+BuildRequires:	gtk+2-devel
 BuildRequires:	libexif-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel >= 1.2
+BuildRequires:	libpng-devel >= 2:1.4
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 %{?with_pango:BuildRequires:	pango-devel >= 1:1.10}
@@ -67,7 +68,7 @@ Requires:	giflib-devel
 Requires:	glib2-devel >= 1:2.2.3
 Requires:	libexif-devel
 Requires:	libjpeg-devel
-Requires:	libpng-devel >= 1.2
+Requires:	libpng-devel >= 2:1.4
 Requires:	libtiff-devel
 %{?with_pango:Requires:	pango-devel >= 1:1.10}
 Requires:	xorg-lib-libXrender-devel
