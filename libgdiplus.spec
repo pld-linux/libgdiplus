@@ -8,7 +8,7 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	2.8.1
+Version:	2.10
 Release:	1
 %if %{with internal_cairo}
 License:	LGPL v2.1 or MPL 1.1
@@ -18,7 +18,7 @@ License:	MIT X11
 Group:		Libraries
 # latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
 Source0:	http://ftp.novell.com/pub/mono/sources/libgdiplus/%{name}-%{version}.tar.bz2
-# Source0-md5:	b9be687fe7decea69128df252faa33e1
+# Source0-md5:	451966e8f637e3a1f02d1d30f900255d
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-lt.patch
 Patch2:		%{name}-libpng.patch
