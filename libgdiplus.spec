@@ -8,8 +8,8 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	2.10
-Release:	5
+Version:	2.10.9
+Release:	1
 %if %{with internal_cairo}
 License:	LGPL v2.1 or MPL 1.1
 %else
@@ -17,8 +17,8 @@ License:	MIT X11
 %endif
 Group:		Libraries
 # latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
-Source0:	http://ftp.novell.com/pub/mono/sources/libgdiplus/%{name}-%{version}.tar.bz2
-# Source0-md5:	451966e8f637e3a1f02d1d30f900255d
+Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
+# Source0-md5:	b4615c14584b5d73cbb9757c28887654
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-lt.patch
 Patch2:		%{name}-libpng.patch
@@ -96,6 +96,7 @@ Statyczna biblioteka libgdiplus.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
+%{__sed} -e 's/png14/png/g' -i configure.in
 
 %build
 cd cairo
@@ -122,6 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgdiplus.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -138,7 +141,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libgdiplus.la
 %{_pkgconfigdir}/libgdiplus.pc
 
 %files static
