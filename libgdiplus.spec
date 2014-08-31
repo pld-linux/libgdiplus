@@ -1,34 +1,26 @@
 #
 # Conditional build:
-%bcond_with	internal_cairo	# internal cairo 1.6.4 instead of system one
-%bcond_with	pango		# use pango for text rendering (experimental; system cairo only)
+%bcond_with	pango		# use pango for text rendering (experimental and unsupported)
 #
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	2.10.9
-Release:	2
-%if %{with internal_cairo}
-License:	LGPL v2.1 or MPL 1.1
-%else
-License:	MIT X11
-%endif
+Version:	3.6
+Release:	1
+License:	MIT
 Group:		Libraries
-# latest downloads summary at http://ftp.novell.com/pub/mono/sources-stable/
-Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.bz2
-# Source0-md5:	b4615c14584b5d73cbb9757c28887654
-Patch0:		%{name}-link.patch
-Patch1:		%{name}-lt.patch
-Patch2:		%{name}-libpng.patch
+Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
+# Source0-md5:	c20ae43bdff075acadc7c345b20b7e02
+Patch0:		%{name}-giflib.patch
 URL:		http://www.mono-project.com/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
-%{!?with_internal_cairo:BuildRequires:	cairo-devel >= 1.6.4}
+BuildRequires:	cairo-devel >= 1.6.4
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
-BuildRequires:	giflib-devel
+BuildRequires:	giflib-devel >= 5.1
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	gtk+2-devel
 BuildRequires:	libexif-devel
@@ -38,8 +30,9 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 %{?with_pango:BuildRequires:	pango-devel >= 1:1.10}
 BuildRequires:	pkgconfig
-BuildRequires:	xorg-lib-libXrender-devel
-%{!?with_internal_cairo:Requires:	cairo >= 1.6.4}
+BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-libX11-devel
+Requires:	cairo >= 1.6.4
 Requires:	glib2 >= 1:2.2.3
 %{?with_pango:Requires:	pango >= 1:1.10}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -61,7 +54,7 @@ Summary:	Development files for libgdiplus
 Summary(pl.UTF-8):	Pliki programistyczne libgdiplus
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-%{!?with_internal_cairo:Requires:	cairo-devel >= 1.4.12}
+Requires:	cairo-devel >= 1.6.4
 Requires:	fontconfig-devel
 Requires:	freetype-devel >= 2.0
 Requires:	giflib-devel
@@ -94,25 +87,17 @@ Statyczna biblioteka libgdiplus.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p0
-%{__sed} -e 's/png14/png/g' -i configure.in
+
+# prefer default libpng instead of libpng14 > libpng12 > default
+%{__sed} -e 's/libpng14/libpng/g' -i configure.ac
 
 %build
-cd cairo
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd -
-
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	%{!?with_internal_cairo:--with-cairo=system} \
 	%{?with_pango:--with-pango}
 
 %{__make}
