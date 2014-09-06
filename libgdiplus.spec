@@ -7,14 +7,14 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	3.6
+Version:	3.8
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
-# Source0-md5:	c20ae43bdff075acadc7c345b20b7e02
+# Source0-md5:	e75440257b006d7fc2c39e9c56022c4e
 Patch0:		%{name}-giflib.patch
-URL:		http://www.mono-project.com/
+URL:		http://www.mono-project.com/docs/gui/libgdiplus/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.6.4
