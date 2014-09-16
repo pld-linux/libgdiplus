@@ -80,21 +80,27 @@
  	}
  	
  	if (gif == NULL) {
-@@ -581,7 +578,7 @@
+@@ -581,7 +578,11 @@
  	}
  
  	FreeExtensionMono(&global_extensions);
--	DGifCloseFile (gif);
++#if (GIFLIB_MAJOR > 5) || ((GIFLIB_MAJOR == 5) && (GIFLIB_MINOR >= 1))
 +	DGifCloseFile (gif, NULL);
++#else
+ 	DGifCloseFile (gif);
++#endif
  
  	*image = result;
  	return Ok;
-@@ -597,7 +594,7 @@
+@@ -597,7 +598,11 @@
  
  	if (gif != NULL) {
  		FreeExtensionMono (&global_extensions);
--		DGifCloseFile (gif);
++#if (GIFLIB_MAJOR > 5) || ((GIFLIB_MAJOR == 5) && (GIFLIB_MINOR >= 1))
 +		DGifCloseFile (gif, NULL);
++#else
+ 		DGifCloseFile (gif);
++#endif
  	}
  
  	*image = NULL;
@@ -166,12 +172,15 @@
  			if (red != NULL) {
  				GdipFree (red);
  			}
-@@ -923,13 +922,13 @@
+@@ -923,13 +930,17 @@
  		}
  	}
  
--	EGifCloseFile (fp);	
-+	EGifCloseFile (fp, NULL);	
++#if (GIFLIB_MAJOR > 5) || ((GIFLIB_MAJOR == 5) && (GIFLIB_MINOR >= 1))
++	EGifCloseFile (fp, NULL);
++#else
+ 	EGifCloseFile (fp);	
++#endif
  	
  	return Ok;
  
