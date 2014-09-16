@@ -20,7 +20,7 @@ BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.6.4
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2.0
-BuildRequires:	giflib-devel >= 5.1
+BuildRequires:	giflib-devel >= 5.0
 BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	gtk+2-devel
 BuildRequires:	libexif-devel
