@@ -8,7 +8,7 @@ Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	3.8
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
