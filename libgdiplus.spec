@@ -7,13 +7,12 @@
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	3.12
+Version:	4.2
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
-# Source0-md5:	b8fd78c2adce16498354c2476a248d98
-Patch0:		%{name}-giflib.patch
+# Source0-md5:	3e68075aa0911d5ebc2b3739e85af0ea
 URL:		http://www.mono-project.com/docs/gui/libgdiplus/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -86,7 +85,6 @@ Statyczna biblioteka libgdiplus.
 
 %prep
 %setup -q
-%patch0 -p1
 
 # prefer default libpng instead of libpng14 > libpng12 > default
 %{__sed} -e 's/libpng14/libpng/g' -i configure.ac
