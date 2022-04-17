@@ -1,0 +1,13 @@
+--- libgdiplus-6.1/configure.ac.orig	2021-11-03 20:53:36.000000000 +0100
++++ libgdiplus-6.1/configure.ac	2022-04-17 10:42:27.774431994 +0200
+@@ -75,8 +75,8 @@ if test $text_v = "default"; then
+ 	  [text_v=pango], [text_v=cairo])
+ fi
+ if test $text_v = "pango"; then
+-	PANGO_LIBS="`$PKG_CONFIG --libs pangocairo `"
+-	PANGO_CFLAGS="`$PKG_CONFIG --cflags pangocairo `"
++	PANGO_LIBS="`$PKG_CONFIG --libs pangocairo pangoft2`"
++	PANGO_CFLAGS="`$PKG_CONFIG --cflags pangocairo pangoft2`"
+ 	AC_DEFINE(USE_PANGO_RENDERING,1,[Use Pango to measure and draw text])
+ 	GDIPLUS_PKG_REQ="$GDIPLUS_PKG_REQ pangocairo-1.0"
+ fi

@@ -1,20 +1,20 @@
 #
 # Conditional build:
-%bcond_with	pango		# use pango for text rendering (experimental and unsupported)
+%bcond_without	pango		# pango based text rendering
 #
 # WARNING! libgdiplus will not work if compiled with -fomit-frame-pointer
 #
 Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
-Version:	5.6.1
+Version:	6.1
 Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	http://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
-# Source0-md5:	71dd7e00431dbd590f2ea7f1d49f097e
-Patch0:		%{name}-ac.patch
-URL:		http://www.mono-project.com/docs/gui/libgdiplus/
+Source0:	https://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
+# Source0-md5:	c017987f3434e0dcd5fa5e5c5631afeb
+Patch0:		%{name}-pango.patch
+URL:		https://www.mono-project.com/docs/gui/libgdiplus/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.6.4
@@ -25,16 +25,17 @@ BuildRequires:	glib2-devel >= 1:2.2.3
 BuildRequires:	gtk+2-devel
 BuildRequires:	libexif-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel >= 2:1.4
+BuildRequires:	libpng-devel >= 2:1.6
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-%{?with_pango:BuildRequires:	pango-devel >= 1:1.10}
+%{?with_pango:BuildRequires:	pango-devel >= 1:1.40.14}
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libX11-devel
+%{!?with_pango:BuildConflicts:	pango-devel}
 Requires:	cairo >= 1.6.4
 Requires:	glib2 >= 1:2.2.3
-%{?with_pango:Requires:	pango >= 1:1.10}
+%{?with_pango:Requires:	pango >= 1:1.40.14}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -61,9 +62,9 @@ Requires:	giflib-devel
 Requires:	glib2-devel >= 1:2.2.3
 Requires:	libexif-devel
 Requires:	libjpeg-devel
-Requires:	libpng-devel >= 2:1.4
+Requires:	libpng-devel >= 2:1.6
 Requires:	libtiff-devel
-%{?with_pango:Requires:	pango-devel >= 1:1.10}
+%{?with_pango:Requires:	pango-devel >= 1:1.40.14}
 Requires:	xorg-lib-libXrender-devel
 
 %description devel
@@ -88,9 +89,6 @@ Statyczna biblioteka libgdiplus.
 %setup -q
 %patch0 -p1
 
-# prefer default libpng instead of libpng14 > libpng12 > default
-%{__sed} -e 's/libpng14/libpng/g' -i configure.ac
-
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -98,6 +96,7 @@ Statyczna biblioteka libgdiplus.
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	%{?with_pango:--with-pango}
 
 %{__make}
@@ -118,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog %{?with_internal_cairo:LICENSE} NEWS README TODO
+%doc AUTHORS LICENSE NEWS README.md TODO
 %attr(755,root,root) %{_libdir}/libgdiplus.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgdiplus.so.0
 # needed at runtime for mono to load it as gdiplus.dll
