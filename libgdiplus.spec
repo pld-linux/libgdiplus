@@ -8,7 +8,7 @@ Summary:	An Open Source implementation of the GDI+ API
 Summary(pl.UTF-8):	Otwarta implementacja API GDI+
 Name:		libgdiplus
 Version:	6.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	https://download.mono-project.com/sources/libgdiplus/%{name}-%{version}.tar.gz
@@ -88,6 +88,9 @@ Statyczna biblioteka libgdiplus.
 %prep
 %setup -q
 %patch0 -p1
+
+# disable gtest tests (not run, require cmake and -Werror fixes)
+%{__sed} -i -e '/^if HAVE_CMAKE/,/^endif/ d' tests/Makefile.am
 
 %build
 %{__libtoolize}
